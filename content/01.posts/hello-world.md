@@ -1,6 +1,7 @@
 ---
 title: "Hello World"
-date: 2024-9-23
+author: "Duong Thu"
+date: "2024-9-23"
 draft: false
 categories: ["linux"]
 tags: ["test", "hello"]

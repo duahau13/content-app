@@ -5,7 +5,7 @@
         <div class="text-center p-5">
           <h1 class="text-4xl font-semibold">{{ doc.title }}</h1>
           <div class="text-gray-500 text-sm mt-2">
-            {{ doc.date }}
+            <PostMeta :author="doc.author" :date="doc.date" />
           </div>
           <span v-for="category in doc.categories">
             <Btn>

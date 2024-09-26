@@ -1,6 +1,7 @@
 ---
 title: "About"
-date: 2024-9-22
+author: "Duong Thu"
+date: "2024-9-22"
 draft: false
 categories: ["vps", "linux"]
 tags: ["test", "beginner"]
@@ -20,11 +21,9 @@ slug: "about"
 
 ```js
 var foo = "bar";
-
 function baz(s) {
   return foo + ":" + s;
 }
-
 const msg = "hello";
 ```
 
