@@ -5,7 +5,9 @@ date: "2024-9-12"
 draft: false
 categories: ["linux", "vps"]
 tags: ["begginer"]
-thumbnail: "/img/cyber-security.jpg"
+image:
+  src: "/img/cyber-security.jpg"
+  alt: "How to strengthen security of a VPS"
 slug: "how-to-secure-a-vps"
 ---
 

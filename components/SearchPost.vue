@@ -1,32 +1,35 @@
-<script setup>
-const searchString = ref("");
-// clearSearch() {
-//   this.searchString.value="";
-// }
+<script lang="ts" setup>
+const searchTerm = ref("");
+const { data: articles, refresh } = await useAsyncData("posts", () =>
+  queryContent("posts")
+    .only(["title", "slug"])
+    .where({
+      draft: false,
+      $or: [
+        { title: { $contains: searchTerm.value } },
+        { slug: { $contains: searchTerm.value } },
+      ],
+    })
+    .limit(10)
+    .find()
+);
+const search = () => {
+  refresh();
+};
+const clearSearch = () => {
+  searchTerm.value = "";
+};
 </script>
 
 <template>
-  <main>
-    <input v-model="searchString" />
-    <ContentList
-      v-if="searchString"
-      :path="`/posts/${searchString}`"
-      fields="title, thumbnail, date"
-      :query="{
-        draft: false,
-        sort: [
-          {
-            date: -1,
-          },
-        ],
-      }"
-      v-slot="{ list }"
-    >
-      <div v-for="post in list" :key="post._path">
-        <NuxtLink :to="`/${post.slug}`" @click="clearSearch">
-          {{ post.title }}
+  <main class="relative">
+    <input v-model="searchTerm" @input="search" />
+    <ul v-if="searchTerm" class="absolute bg-white w-full">
+      <li v-for="result in articles" :key="result.slug">
+        <NuxtLink :to="`/${result.slug}`" @click="clearSearch">
+          {{ result.title }}
         </NuxtLink>
-      </div>
-    </ContentList>
+      </li>
+    </ul>
   </main>
 </template>

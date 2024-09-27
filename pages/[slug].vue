@@ -1,5 +1,5 @@
 <template>
-  <article class="prose">
+  <article>
     <ContentDoc :path="`/posts/${slug}`" v-slot="{ doc }">
       <header>
         <div class="text-center p-5">
@@ -13,45 +13,34 @@
             </Btn>
           </span>
         </div>
-        <img :src="doc.thumbnail" class="w-full h-full object-cover" />
+        <img
+          :src="doc.image.src"
+          :alt="doc.image.alt"
+          class="w-full h-full object-cover"
+        />
       </header>
-      <main class="content p-5">
+      <Toc :doc="doc" />
+      <main class="prose">
         <ContentRenderer :value="doc"></ContentRenderer>
       </main>
+      <PrevNext :prev="prevNext[0]" :next="prevNext[1]" />
     </ContentDoc>
   </article>
 </template>
 
 <script setup>
 const { slug } = useRoute().params;
+const { data: prevNext } = useAsyncData("prevNext", () => {
+  return queryContent()
+    .only(["slug", "title"])
+    .sort({ date: 1 })
+    .where({ draft: false })
+    .findSurround(`/posts/${slug}`);
+});
 </script>
 
-<style>
-/* .content p:not(:last-child),
-.content li:not(:last-child),
-.content blockquote:not(:last-child),
-.content h1:not(:last-child),
-.content h2:not(:last-child),
-.content h3:not(:last-child),
-.content h4:not(:last-child),
-.content pre:not(:last-child),
-.content table:not(:last-child) {
-  @apply mb-4;
+<style scoped>
+.prose {
+  max-width: inherit;
 }
-
-.content h1 {
-  @apply text-3xl font-bold;
-}
-.content h2 {
-  @apply text-2xl font-bold;
-}
-.content h3 {
-  @apply text-xl font-bold;
-}
-.content h4 {
-  @apply text-lg font-bold;
-}
-.content h5 {
-  @apply text-base font-bold;
-} */
 </style>

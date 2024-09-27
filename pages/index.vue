@@ -19,7 +19,8 @@
       >
         <div class="h-[320px] relative">
           <img
-            :src="post.thumbnail"
+            :src="post.image.src"
+            :alt="post.image.alt"
             class="w-full h-full object-cover absolute"
           />
         </div>

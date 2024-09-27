@@ -5,7 +5,9 @@ date: "2024-9-24"
 draft: false
 categories: ["test"]
 tags: ["test", "hello"]
-thumbnail: "/img/building.jpg"
+image:
+  src: "/img/building.jpg"
+  alt: "An image showcasing My Page"
 slug: "test"
 ---
 

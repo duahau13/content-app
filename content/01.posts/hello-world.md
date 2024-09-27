@@ -5,7 +5,9 @@ date: "2024-9-23"
 draft: false
 categories: ["linux"]
 tags: ["test", "hello"]
-thumbnail: "/img/hello.jpg"
+image:
+  src: "/img/hello.jpg"
+  alt: "Hello in different languages"
 slug: "hello-world"
 ---
 
