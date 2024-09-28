@@ -1,37 +1,31 @@
 <template>
-  <div
-    v-for="post in postList"
-    :key="post._path"
-    class="blog-card bg-white rounded-2xl overflow-hidden mb-4"
-  >
-    <div class="h-[320px] relative">
-      <img
-        :src="post.image.src"
-        :alt="post.image.alt"
-        class="w-full h-full object-cover absolute"
-      />
-    </div>
-    <div class="blog-card--meta p-4">
-      <h3 class="text-2xl font-semibold">
-        <NuxtLink :to="`/${post.slug}`">{{ post.title }}</NuxtLink>
-      </h3>
-      <span class="text-sm text-gray-500 mr-4">{{ post.date }}</span>
-      <span v-for="category in post.categories" class="mr-2">
-        <Btn>
-          <NuxtLink :to="`/category/${category}`">{{ category }}</NuxtLink>
-        </Btn>
-      </span>
-    </div>
-  </div>
+  <main>
+    <PostCard v-for="post in list.posts" :post="post" :key="post.slug" />
+    <Btn @click="loadMore">Load more {{ counter.count }}</Btn>
+  </main>
 </template>
 <script setup>
 const { data: postList } = useAsyncData("postList", () => {
   return queryContent("/posts")
+    .only(["title", "slug", "image", "categories", "date"])
     .sort({ date: -1 })
-    .limit(3)
     .where({ draft: false })
+    .limit(3)
     .find();
 });
+const list = reactive({ posts: postList });
+const counter = reactive({ count: 0 });
+const loadMore = () => {
+  counter.count++;
+  let { data: additionalItems } = useAsyncData("additionalItems", () => {
+    return queryContent("/posts")
+      .only(["title", "slug", "image", "categories", "date"])
+      .skip(3)
+      .limit(3)
+      .find();
+  });
+  list.posts.push(additionalItems);
+};
 </script>
 
 <style></style>
