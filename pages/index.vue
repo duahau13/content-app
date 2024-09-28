@@ -1,43 +1,16 @@
 <template>
-  <div>
-    <ContentList
-      path="/posts"
-      :query="{
-        draft: false,
-        sort: [
-          {
-            date: -1,
-          },
-        ],
-      }"
-      v-slot="{ list }"
-    >
-      <div
-        v-for="post in list"
-        :key="post._path"
-        class="blog-card bg-white rounded-2xl overflow-hidden mb-4"
-      >
-        <div class="h-[320px] relative">
-          <img
-            :src="post.image.src"
-            :alt="post.image.alt"
-            class="w-full h-full object-cover absolute"
-          />
-        </div>
-        <div class="blog-card--meta p-4">
-          <h3 class="text-2xl font-semibold">
-            <NuxtLink :to="`/${post.slug}`">{{ post.title }}</NuxtLink>
-          </h3>
-          <span class="text-sm text-gray-500 mr-4">{{ post.date }}</span>
-          <span v-for="category in post.categories" class="mr-2">
-            <Btn>
-              <NuxtLink :to="`/category/${category}`">{{ category }}</NuxtLink>
-            </Btn>
-          </span>
-        </div>
-      </div>
-    </ContentList>
-  </div>
+  <main>
+    <PostCard v-for="post in postList" :post="post" :key="post.slug" />
+  </main>
 </template>
-<script setup></script>
+<script setup>
+const { data: postList } = useAsyncData("postList", () => {
+  return queryContent("/posts")
+    .only(["title", "slug", "image", "categories", "date"])
+    .sort({ date: -1 })
+    .where({ draft: false })
+    .find();
+});
+</script>
+
 <style></style>
