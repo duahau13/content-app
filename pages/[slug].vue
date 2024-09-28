@@ -30,13 +30,11 @@
 
 <script setup>
 const { slug } = useRoute().params;
-const { data: prevNext } = useAsyncData("prevNext", () => {
-  return queryContent()
-    .only(["slug", "title"])
-    .sort({ date: 1 })
-    .where({ draft: false })
-    .findSurround(`/posts/${slug}`);
-});
+const prevNext = await queryContent()
+  .only(["slug", "title"])
+  .sort({ date: 1 })
+  .where({ draft: false })
+  .findSurround(`/posts/${slug}`);
 </script>
 
 <style scoped>
