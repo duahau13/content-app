@@ -7,7 +7,7 @@
     >
       <div class="h-[320px] relative">
         <img
-          :src="post.thumbnail"
+          :src="post.image.src"
           class="w-full h-full object-cover absolute"
         />
       </div>
