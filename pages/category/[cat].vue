@@ -3,8 +3,10 @@
 </template>
 <script setup>
 const { cat } = useRoute().params;
-const categoryPostList = await queryContent()
-  .where({ categories: { $contains: cat } })
-  .find();
+const { data: categoryPostList } = await useAsyncData("categoryPostList", () =>
+  queryContent()
+    .where({ categories: { $contains: cat } })
+    .find()
+);
 </script>
 <style></style>

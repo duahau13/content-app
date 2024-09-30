@@ -7,15 +7,16 @@
   </main>
 </template>
 <script setup>
-const postList = await queryContent("/posts")
-  .only(["title", "slug", "image", "categories", "date"])
-  .sort({ date: -1 })
-  .where({ draft: false })
-  .limit(4)
-  .find();
-
-const nextPage = postList.length === 4;
-const posts = postList.slice(0, -1);
+const { data: postList } = await useAsyncData("home", () =>
+  queryContent("/posts")
+    .only(["title", "slug", "image", "categories", "date"])
+    .sort({ date: -1 })
+    .where({ draft: false })
+    .limit(4)
+    .find()
+);
+const nextPage = postList.value.length === 4;
+const posts = postList.value.slice(0, -1);
 </script>
 
 <style></style>

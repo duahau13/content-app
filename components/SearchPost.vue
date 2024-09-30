@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const searchTerm = ref("");
-const { data: articles, refresh } = await useAsyncData("posts", () =>
+const { data: results, refresh } = await useAsyncData("posts", () =>
   queryContent("posts")
     .only(["title", "slug"])
     .where({
@@ -16,7 +16,17 @@ const { data: articles, refresh } = await useAsyncData("posts", () =>
 const search = () => {
   refresh();
 };
-const clearSearch = () => {
+const toSearchPage = (keyword: string) => {
+  navigateTo({
+    path: "/search",
+    query: {
+      keyword: keyword,
+      sort: "asc",
+    },
+  });
+  clearSearchTerm();
+};
+const clearSearchTerm = () => {
   searchTerm.value = "";
 };
 </script>
@@ -25,11 +35,14 @@ const clearSearch = () => {
   <main class="relative">
     <input v-model="searchTerm" @input="search" />
     <ul v-if="searchTerm" class="absolute bg-white w-full">
-      <li v-for="result in articles" :key="result.slug">
-        <NuxtLink :to="`/${result.slug}`" @click="clearSearch">
+      <li v-for="result in results" :key="result.slug">
+        <NuxtLink :to="`/${result.slug}`" @click="clearSearchTerm">
           {{ result.title }}
         </NuxtLink>
       </li>
+      <Btn v-if="results" @click="toSearchPage(searchTerm)"
+        >View search results</Btn
+      >
     </ul>
   </main>
 </template>
