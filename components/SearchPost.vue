@@ -10,7 +10,7 @@ const { data: results, refresh } = await useAsyncData("posts", () =>
         { slug: { $contains: searchTerm.value } },
       ],
     })
-    .limit(10)
+    .limit(5)
     .find()
 );
 const search = () => {
@@ -33,7 +33,7 @@ const clearSearchTerm = () => {
 
 <template>
   <main class="relative">
-    <input v-model="searchTerm" @input="search" />
+    <input v-model="searchTerm" @input="search" type="text" id="searchBox" />
     <ul v-if="searchTerm" class="absolute bg-white w-full">
       <li v-for="result in results" :key="result.slug">
         <NuxtLink :to="`/${result.slug}`" @click="clearSearchTerm">
