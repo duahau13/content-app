@@ -11,18 +11,29 @@
 </template>
 <script setup>
 const router = useRouter();
+const route = useRoute();
 const { keyword } = router.currentRoute.value.query;
 const wordArray = keyword.match(/\b\w+\b/g);
-const posts = await queryContent("posts")
-  .only(["title", "slug", "image", "categories", "date"])
-  .where({
-    draft: false,
-    $or: [
-      { title: { $contains: wordArray } },
-      { slug: { $contains: wordArray } },
-    ],
-  })
-  .limit(10)
-  .find();
+const { data: posts, refresh } = await useAsyncData("categoryPostList", () =>
+  queryContent("posts")
+    .only(["title", "slug", "image", "categories", "date"])
+    .where({
+      draft: false,
+      $or: [
+        { title: { $contains: wordArray } },
+        { slug: { $contains: wordArray } },
+      ],
+    })
+    .limit(10)
+    .find()
+);
+
+watch(
+  () => keyword,
+  () => refresh()
+);
+console.log(route);
+console.log(router);
+console.log(keyword);
 </script>
 <style></style>
