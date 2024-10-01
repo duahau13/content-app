@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/content",
     "@nuxtjs/tailwindcss",
-    "nuxt-security",
+    // "nuxt-security",
   ],
   routeRules: {
     "/": { prerender: true },

@@ -49,7 +49,6 @@ const { data: prevNext } = await useAsyncData("prevNext", () =>
     .where({ draft: false })
     .findSurround(`/posts/${slug}`)
 );
-console.log(prevNext);
 </script>
 
 <style scoped>
