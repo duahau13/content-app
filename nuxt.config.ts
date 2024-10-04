@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     // "@nuxtjs/tailwindcss",
     // "nuxt-security",
   ],
-  extends: ["@nuxt/ui-pro"],
+  // extends: ["@nuxt/ui-pro"],
   routeRules: {
     "/": { prerender: true },
   },

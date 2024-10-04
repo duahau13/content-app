@@ -1,16 +1,7 @@
 <template>
   <main>
-    <div class="grid grid-cols-3 gap-4">
-      <UCard v-for="post in posts" :key="post.slug">
-        <template #header>
-          <NuxtImg :src="post.image.src" />
-        </template>
-        {{ post.title }}
-        <p>{{ post.description }}</p>
-        <template #footer>
-          <NuxtLink :to="`/${post.slug}`"> Read more </NuxtLink>
-        </template>
-      </UCard>
+    <div class="grid grid-cols-1 gap-4">
+      <PostCard v-for="post in posts" :post="post" />
     </div>
     <nav class="pageNav">
       <UButton>
