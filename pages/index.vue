@@ -1,38 +1,17 @@
 <template>
   <main>
-    <UBlogList orientation="horizontal">
-      <!-- <UCard v-for="post in posts" :key="post.slug">
+    <div class="grid grid-cols-3 gap-4">
+      <UCard v-for="post in posts" :key="post.slug">
         <template #header>
-          {{ post.title }}
+          <NuxtImg :src="post.image.src" />
         </template>
-        <NuxtImg :src="post.image.src" />
+        {{ post.title }}
         <p>{{ post.description }}</p>
         <template #footer>
           <NuxtLink :to="`/${post.slug}`"> Read more </NuxtLink>
         </template>
-      </UCard>  -->
-
-      <UBlogPost
-        v-for="post in posts"
-        :key="post.slug"
-        :title="post.title"
-        :description="post.description"
-        :date="post.date"
-        orientation="vertical"
-        :image="{ src: post.image.src, alt: 'Nuxt 3.9' }"
-        :authors="[
-          {
-            name: post.author,
-            avatar: {
-              src: 'https://github.com/danielroe.png',
-              target: '_blank',
-            },
-            to: 'https://twitter.com/danielcroe',
-          },
-        ]"
-        :badge="{ label: 'Release' }"
-      />
-    </UBlogList>
+      </UCard>
+    </div>
     <nav class="pageNav">
       <UButton>
         <NuxtLink to="/page/2" v-if="nextPage">Next</NuxtLink>
