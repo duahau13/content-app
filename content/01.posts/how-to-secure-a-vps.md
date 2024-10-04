@@ -3,6 +3,7 @@ title: "How to secure a VPS"
 author: "Duong Thu"
 date: "2024-9-12"
 draft: false
+description: "After you have successfully created a Compute Instance, there are a few initial configuration steps you should perform within your new Linux system."
 categories: ["linux", "vps"]
 tags: ["begginer"]
 image:

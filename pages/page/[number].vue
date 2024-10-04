@@ -2,8 +2,12 @@
   <main>
     <PostCard v-for="post in posts" :post="post" :key="post.slug" />
     <nav class="pageNav">
-      <NuxtLink :to="previousPage">Back</NuxtLink>
-      <NuxtLink v-if="nextPage" :to="`/page/${currentPage + 1}`">Next</NuxtLink>
+      <Btn>
+        <NuxtLink :to="previousPage">Back</NuxtLink>
+        <NuxtLink v-if="nextPage" :to="`/page/${currentPage + 1}`"
+          >Next</NuxtLink
+        >
+      </Btn>
     </nav>
   </main>
 </template>

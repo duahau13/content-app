@@ -38,9 +38,12 @@
       </template>
     </ContentDoc>
   </article>
+  <PostComments />
 </template>
 
 <script setup>
+import PostComments from "~/components/PostComments.vue";
+
 const { slug } = useRoute().params;
 const { data: prevNext } = await useAsyncData("prevNext", () =>
   queryContent()

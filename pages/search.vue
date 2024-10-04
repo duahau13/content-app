@@ -11,7 +11,6 @@
 </template>
 <script setup>
 const router = useRouter();
-const route = useRoute();
 const { keyword } = router.currentRoute.value.query;
 const wordArray = keyword.match(/\b\w+\b/g);
 const { data: posts, refresh } = await useAsyncData("categoryPostList", () =>
@@ -27,13 +26,5 @@ const { data: posts, refresh } = await useAsyncData("categoryPostList", () =>
     .limit(10)
     .find()
 );
-
-watch(
-  () => keyword,
-  () => refresh()
-);
-console.log(route);
-console.log(router);
-console.log(keyword);
 </script>
 <style></style>

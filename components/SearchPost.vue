@@ -13,12 +13,12 @@ const toSearchPage = (keyword) => {
 </script>
 
 <template>
-  <main class="relative">
+  <div class="relative">
     <input
       v-model="searchTerm"
       @keyup.enter="toSearchPage(searchTerm)"
       type="text"
       id="searchBox"
     />
-  </main>
+  </div>
 </template>

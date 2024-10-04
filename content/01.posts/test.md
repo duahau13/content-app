@@ -3,6 +3,7 @@ title: "A test post"
 author: "Duong Thu"
 date: "2024-9-24"
 draft: false
+description: "Hello and welcome to this Nuxt i18n guide that will cover translating your Nuxt.js app into multiple languages. We’ll cover everything you need to know to make your Nuxt.js app multilingual."
 categories: ["test"]
 tags: ["test", "hello"]
 image:

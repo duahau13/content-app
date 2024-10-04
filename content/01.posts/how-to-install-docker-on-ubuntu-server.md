@@ -3,6 +3,7 @@ title: "How to install Docker on Ubuntu servers"
 author: "Duong Thu"
 date: "2024-9-30"
 draft: false
+description: "Docker simplifies the process of managing application processes in containers. While containers are similar to virtual machines in certain ways, they are more lightweight and resource-friendly."
 categories: ["linux", "docker"]
 tags: ["beginner"]
 image:

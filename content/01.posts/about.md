@@ -3,6 +3,7 @@ title: "About"
 author: "Duong Thu"
 date: "2024-9-22"
 draft: false
+description: "If you haven't done so already, review the following guides to learn more about using Linode and Compute Instances."
 categories: ["vps", "linux"]
 tags: ["test", "beginner"]
 image:

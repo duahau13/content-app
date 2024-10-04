@@ -3,6 +3,7 @@ title: "Hello World"
 author: "Duong Thu"
 date: "2024-9-23"
 draft: false
+description: "We’ll also dive into supporting right-to-left languages, handling pluralization, and localizing dates, times, and currencies."
 categories: ["linux"]
 tags: ["test", "hello"]
 image:

@@ -1,8 +1,6 @@
 <template>
   <div class="bg-white rounded-2xl overflow-hidden mb-4">
-    <div class="h-[320px] relative">
-      <img :src="post.image.src" class="w-full h-full object-cover absolute" />
-    </div>
+    <NuxtImg :src="post.image.src" fit="inside" sizes="100vw sm:50vw" />
     <div class="blog-card--meta p-4">
       <h3 class="text-2xl font-semibold">
         <NuxtLink :to="`/${post.slug}`">{{ post.title }}</NuxtLink>
