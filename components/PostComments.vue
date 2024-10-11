@@ -1,12 +1,6 @@
 <template>
-  <div class="post" v-if="post">
-    <!-- <h1 v-text="post.title" />
-    <p v-text="post.content" /> -->
-    <h3>
-      Comments (<span v-text="post.comments ? post.comments.length : 0" />)
-    </h3>
-
-    <form @submit="submitComment">
+  <div>
+    <form @submit="submitComment" class="flex">
       <textarea
         required
         placeholder="Write your comment"
@@ -20,13 +14,12 @@
         placeholder="Your name"
         v-model="comment.author"
       />
-      <input type="submit" />
+      <button type="submit">Submit</button>
     </form>
-
-    <span v-if="!post.comments && loadingComments">Loading comments...</span>
-
-    <div v-if="post.comments">
-      <div v-for="comment in post.comments">
+    <span v-if="loadingComments">Loading comments...</span>
+    <!-- <h3>Comments (<span v-text="comments ? comments.length : 0" />)</h3> -->
+    <div v-if="comments">
+      <div v-for="comment in comments">
         <p v-text="sanitize(comment.body)"></p>
         <p>
           <em>- {{ sanitize(comment.author) }}</em>
@@ -37,44 +30,30 @@
 </template>
 
 <script type="module">
-const posts = {
-  "hello-world": {
-    title: "Hello World!",
-    content: "Testing, one two",
-    slug: "hello-world",
-  },
-};
-
 export default {
   data() {
     return {
+      comments: [],
       comment: {
         author: "",
         body: "",
       },
-      post: null,
-      loadingComments: false,
+      loadingComments: true,
     };
   },
+  props: ["slug"],
 
   mounted() {
-    const param = this.$route.params.slug;
-    if (posts[param]) {
-      this.post = posts[param];
-      this.loadComments();
-    } else {
-      throw new Error("Couldn't find post");
-    }
+    this.loadComments();
   },
 
   methods: {
     async loadComments() {
-      this.loadingComments = true;
+      // this.loadingComments = true;
       const resp = await fetch(
-        `https://d1-comments.huyluong82.workers.dev/api/${this.post.slug}/comments`
+        `https://d1-comments.huyluong82.workers.dev/api/${this.slug}/comments`
       );
-      const comments = await resp.json();
-      this.post.comments = comments;
+      this.comments = await resp.json();
       this.loadingComments = false;
     },
     async submitComment(evt) {
@@ -84,13 +63,13 @@ export default {
         author: this.sanitize(this.comment.author),
       };
       const resp = await fetch(
-        `https://d1-comments.huyluong82.workers.dev/api/${this.post.slug}/comments`,
+        `https://d1-comments.huyluong82.workers.dev/api/${this.slug}/comments`,
         {
           method: "POST",
           body: JSON.stringify(newComment),
         }
       );
-      if (resp.status == 201) this.post.comments.push(newComment);
+      if (resp.status == 201) this.comments.push(newComment);
       this.comment.author = "";
       this.comment.body = "";
     },

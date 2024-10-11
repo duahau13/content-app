@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/seo",
+    "@nuxtjs/color-mode",
     "shadcn-nuxt",
     // "nuxt-security",
   ],

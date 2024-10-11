@@ -8,26 +8,31 @@
         <NuxtLink to="/page/2" v-if="nextPage">Next</NuxtLink>
       </Button>
     </nav>
-    <div>
-      <Accordion
-        type="single"
-        class="w-full"
-        collapsible
-        :default-value="defaultValue"
-      >
-        <AccordionItem
-          v-for="item in accordionItems"
-          :key="item.value"
-          :value="item.value"
-        >
-          <AccordionTrigger>{{ item.title }}</AccordionTrigger>
-          <AccordionContent>
-            {{ item.content }}
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </div>
   </main>
+  <DropdownMenu>
+    <DropdownMenuTrigger as-child>
+      <Button variant="outline">
+        <MoonIcon
+          class="icon h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+        />
+        <SunIcon
+          class="icon absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+        />
+        <span class="sr-only">Toggle theme</span>
+      </Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent align="end">
+      <DropdownMenuItem @click="colorMode.preference = 'light'">
+        Light
+      </DropdownMenuItem>
+      <DropdownMenuItem @click="colorMode.preference = 'dark'">
+        Dark
+      </DropdownMenuItem>
+      <DropdownMenuItem @click="colorMode.preference = 'system'">
+        System
+      </DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
 </template>
 <script setup>
 const { data: postList } = await useAsyncData("home", () =>
@@ -41,25 +46,7 @@ const { data: postList } = await useAsyncData("home", () =>
 const nextPage = postList.value.length === 4;
 const posts = postList.value.slice(0, -1);
 
-// const defaultValue = "item-1";
-
-const accordionItems = [
-  {
-    value: "item-1",
-    title: "Is it accessible?",
-    content: "Yes. It adheres to the WAI-ARIA design pattern.",
-  },
-  {
-    value: "item-2",
-    title: "Is it unstyled?",
-    content:
-      "Yes. It's unstyled by default, giving you freedom over the look and feel.",
-  },
-  {
-    value: "item-3",
-    title: "Can it be animated?",
-    content: "Yes! You can use the transition prop to configure the animation.",
-  },
-];
+const colorMode = useColorMode();
+import { SunIcon, MoonIcon } from "@heroicons/vue/24/outline";
 </script>
 <style></style>
