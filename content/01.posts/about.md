@@ -1,15 +1,20 @@
 ---
-title: "About"
-author: "Duong Thu"
-date: "2024-9-22"
+title: About
+author: Duong Thu
+date: 2024-9-22
 draft: false
-description: "If you haven't done so already, review the following guides to learn more about using Linode and Compute Instances."
-categories: ["vps", "linux"]
-tags: ["test", "beginner"]
+description: If you haven't done so already, review the following guides to
+  learn more about using Linode and Compute Instances.
+categories:
+  - vps
+  - linux
+tags:
+  - test
+  - beginner
 image:
-  src: "/img/about.png"
-  alt: "About myself and my interests"
-slug: "about"
+  src: /img/about.png
+  alt: About myself and my interests
+slug: about
 ---
 
 # Xin chào v2

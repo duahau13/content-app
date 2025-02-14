@@ -9,7 +9,6 @@ description: After you have successfully created a Compute Instance, there are a
 categories:
   - linux
   - vps
-  - ""
 tags:
   - beginner
 image:
@@ -44,7 +43,7 @@ All new Compute Instances are set to UTC time by default. However, you may prefe
 
 Use the `date` command to view the current date and time according to your server.
 
-```text
+```bash
 root@localhost:~# date
 Thu Feb 16 12:17:52 EST 2018
 ```
@@ -63,13 +62,13 @@ Lastly, edit the SSH configuration file to disallow root login and disable passw
 
 1.Open the SSH configuration file on your Compute Instance using a Linux text editor, such as nano or vim
 
-```text
+```bash
 sudo nano /etc/ssh/sshd_config
 ```
 
 2.Disallow root logins over SSH. This requires all SSH connections be by non-root users. Once a limited user account is connected, administrative privileges are accessible either by using `sudo` or changing to a root shell using `su -`
 
-```text
+```bash
 # Authentication:
 ...
 PermitRootLogin no
