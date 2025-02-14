@@ -18,6 +18,9 @@ export default defineNuxtConfig({
     highlight: {
       theme: "github-dark",
     },
+    preview: {
+      api: "https://api.nuxt.studio",
+    },
   },
   image: {
     format: ["webp"],
