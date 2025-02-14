@@ -1,5 +1,5 @@
 ---
-title: How to secure a VPS
+title: How to secure a VPS efficiently
 author: Duong Thu
 date: 2024-9-12
 draft: false
@@ -9,8 +9,9 @@ description: After you have successfully created a Compute Instance, there are a
 categories:
   - linux
   - vps
+  - ""
 tags:
-  - begginer
+  - beginner
 image:
   src: /img/cyber-security.jpg
   alt: How to strengthen security of a VPS
