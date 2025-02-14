@@ -1,15 +1,20 @@
 ---
-title: "How to secure a VPS"
-author: "Duong Thu"
-date: "2024-9-12"
+title: How to secure a VPS
+author: Duong Thu
+date: 2024-9-12
 draft: false
-description: "After you have successfully created a Compute Instance, there are a few initial configuration steps you should perform within your new Linux system."
-categories: ["linux", "vps"]
-tags: ["begginer"]
+description: After you have successfully created a Compute Instance, there are a
+  few initial configuration steps you should perform within your new Linux
+  system.
+categories:
+  - linux
+  - vps
+tags:
+  - begginer
 image:
-  src: "/img/cyber-security.jpg"
-  alt: "How to strengthen security of a VPS"
-slug: "how-to-secure-a-vps"
+  src: /img/cyber-security.jpg
+  alt: How to strengthen security of a VPS
+slug: how-to-secure-a-vps
 ---
 
 After you have successfully created a Compute Instance, there are a few initial configuration steps you should perform within your new Linux system. This includes updating your system, setting the timezone, configuring a custom hostname, adding a limited user, hardening SSH to prevent unauthorized access, and configuring a firewall. These steps ensure your instance is up to date, secure, and ready for use.
@@ -26,7 +31,7 @@ If you haven't done so already, review the following guides to learn more about 
 
 Updating your system frequently is the single biggest security precaution you can take for any operating system. Software updates range from critical vulnerability patches to minor bug fixes and many software vulnerabilities are actually patched by the time they become public. Updating also provides you with the latest software versions available for your distribution.
 
-```
+```bash
 apt update && apt upgrade
 ```
 
@@ -38,7 +43,7 @@ All new Compute Instances are set to UTC time by default. However, you may prefe
 
 Use the `date` command to view the current date and time according to your server.
 
-```
+```text
 root@localhost:~# date
 Thu Feb 16 12:17:52 EST 2018
 ```
@@ -57,13 +62,13 @@ Lastly, edit the SSH configuration file to disallow root login and disable passw
 
 1.Open the SSH configuration file on your Compute Instance using a Linux text editor, such as nano or vim
 
-```
+```text
 sudo nano /etc/ssh/sshd_config
 ```
 
 2.Disallow root logins over SSH. This requires all SSH connections be by non-root users. Once a limited user account is connected, administrative privileges are accessible either by using `sudo` or changing to a root shell using `su -`
 
-```
+```text
 # Authentication:
 ...
 PermitRootLogin no
