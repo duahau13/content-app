@@ -13,10 +13,10 @@
         <NuxtLink :to="`/${post.slug}`">{{ post.title }}</NuxtLink>
       </h3>
       <span class="text-sm text-gray-500 mr-4">{{ post.date }}</span>
-      <span v-for="category in post.categories" class="mr-2">
-        <Btn>
+      <span v-for="category in post.categories">
+        <Badge class="mr-2">
           <NuxtLink :to="`/category/${category}`">{{ category }}</NuxtLink>
-        </Btn>
+        </Badge>
       </span>
     </div>
   </div>

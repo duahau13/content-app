@@ -20,7 +20,8 @@ slug: hello-world
 Hello
 ::
 
-```bash
+```shell
+
 sudo apt update
 echo $USER
 ```
