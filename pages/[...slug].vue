@@ -1,5 +1,5 @@
 <template>
-  <article v-if="doc">
+  <!-- <article v-if="doc">
     <header>
       <div class="text-center p-5">
         <h1 class="text-4xl font-semibold">{{ doc.title }}</h1>
@@ -26,8 +26,8 @@
     </main>
     <PrevNext :prev="prevNext[0]" :next="prevNext[1]" />
     <PostComments :slug="route.params.slug" />
-  </article>
-  <div v-else>
+  </article> -->
+  <!-- <div v-else>
     <NuxtLayout :name="404">
       <div>
         <div class="text-2xl">You've Arrived Here on Error, boss.</div>
@@ -36,21 +36,27 @@
         </Button>
       </div>
     </NuxtLayout>
-  </div>
+  </div> -->
+  {{ doc }}
+  {{ prevNext }}
 </template>
 
-<script setup>
+<script setup lang="ts">
 const route = useRoute();
-const { data: doc } = await useAsyncData(route.path, () =>
-  queryContent(`posts${route.path}`).where({ draft: false }).findOne()
-);
-const { data: prevNext } = await useAsyncData("prevNext", () =>
-  queryContent()
-    .only(["slug", "title"])
-    .sort({ date: 1 })
-    .where({ draft: false })
-    .findSurround(`/posts${route.path}`)
-);
+const { data: doc } = await useAsyncData("post-" + route.path, () => {
+  return queryCollection("post")
+    .path(route.path)
+    .where("draft", "=", false)
+    .first();
+});
+
+const { data: prevNext } = await useAsyncData("prevNext", () => {
+  return queryCollectionItemSurroundings("post", route.path)
+    .where("draft", "=", false)
+    .order("date", "DESC");
+});
+console.log(doc);
+console.log(prevNext);
 </script>
 
 <style scoped>

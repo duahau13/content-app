@@ -15,13 +15,16 @@
 const { number } = useRoute().params;
 const currentPage = parseInt(number);
 let previousPage = currentPage - 1 === 1 ? "/" : "`/page/${currentPage - 1}`";
-const postList = await queryContent("/posts")
-  .only(["title", "slug", "image", "categories", "date"])
-  .sort({ date: -1 })
-  .where({ draft: false })
-  .limit(4)
-  .skip(3 * (currentPage - 1))
-  .find();
+
+const { data: postList } = await useAsyncData(number, () => {
+  return queryCollection("post")
+    .select("title", "slug", "image", "categories", "date", "description")
+    .order("date", "DESC")
+    .where("draft", "=", false)
+    .limit(4)
+    .skip(3 * (currentPage - 1))
+    .all();
+});
 const nextPage = postList.length === 4;
 const posts = nextPage ? postList.slice(0, -1) : postList;
 </script>

@@ -35,14 +35,14 @@
   </DropdownMenu>
 </template>
 <script setup>
-const { data: postList } = await useAsyncData("home", () =>
-  queryContent("/posts")
-    .only(["title", "slug", "image", "categories", "date", "description"])
-    .sort({ date: -1 })
-    .where({ draft: false })
+const { data: postList } = await useAsyncData("home", () => {
+  return queryCollection("post")
+    .select("title", "slug", "image", "categories", "date", "description")
+    .order("date", "DESC")
+    .where("draft", "=", false)
     .limit(4)
-    .find()
-);
+    .all();
+});
 const nextPage = postList.value.length === 4;
 const posts = postList.value.slice(0, -1);
 
