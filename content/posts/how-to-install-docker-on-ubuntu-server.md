@@ -1,5 +1,5 @@
 ---
-title: How to install Docker on Ubuntu servers
+title: "[UPDATE] How to install Docker on Ubuntu servers"
 author: Duong Thu
 date: 2024-9-30
 draft: false
