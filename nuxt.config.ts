@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   ssr: true,
   modules: [
     "@nuxt/content",
-    // "@nuxtjs/mdc",
     "@nuxt/image",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode", // "nuxt-security",

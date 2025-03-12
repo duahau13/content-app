@@ -11,14 +11,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  date: {
+  publishDate: {
     type: String,
     required: true,
   },
-  // categories: {
-  //   type: Array,
-  //   default: ''
-  // }
 });
 
 const formattedDate = computed(() => {
