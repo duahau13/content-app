@@ -1,5 +1,5 @@
 <template>
-  <!-- <article v-if="doc">
+  <article v-if="doc">
     <header>
       <div class="text-center p-5">
         <h1 class="text-4xl font-semibold">{{ doc.title }}</h1>
@@ -19,15 +19,13 @@
       />
     </header>
     <Toc :doc="doc" />
-    <main class="prose lg:prose-lg">
-      <ContentRenderer :value="doc">
-        <ContentRendererMarkdown :value="doc" />
-      </ContentRenderer>
+    <main class="prose">
+      <ContentRenderer :value="doc"></ContentRenderer>
     </main>
     <PrevNext :prev="prevNext[0]" :next="prevNext[1]" />
     <PostComments :slug="route.params.slug" />
-  </article> -->
-  <!-- <div v-else>
+  </article>
+  <div v-else>
     <NuxtLayout :name="404">
       <div>
         <div class="text-2xl">You've Arrived Here on Error, boss.</div>
@@ -36,27 +34,23 @@
         </Button>
       </div>
     </NuxtLayout>
-  </div> -->
-  {{ doc }}
-  {{ prevNext }}
+  </div>
 </template>
 
 <script setup lang="ts">
 const route = useRoute();
 const { data: doc } = await useAsyncData("post-" + route.path, () => {
   return queryCollection("post")
-    .path(route.path)
+    .path(`/posts${route.path}`)
     .where("draft", "=", false)
     .first();
 });
 
 const { data: prevNext } = await useAsyncData("prevNext", () => {
-  return queryCollectionItemSurroundings("post", route.path)
+  return queryCollectionItemSurroundings("post", `/posts${route.path}`)
     .where("draft", "=", false)
     .order("date", "DESC");
 });
-console.log(doc);
-console.log(prevNext);
 </script>
 
 <style scoped>

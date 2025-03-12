@@ -4,11 +4,17 @@ export default defineNuxtConfig({
   ssr: true,
   modules: [
     "@nuxt/content",
+    // "@nuxtjs/mdc",
     "@nuxt/image",
     "@nuxtjs/tailwindcss",
-    "@nuxtjs/color-mode",
+    "@nuxtjs/color-mode", // "nuxt-security",
     "shadcn-nuxt",
-    // "nuxt-security",
+  ],
+  components: [
+    {
+      path: "~/components",
+      pathPrefix: false,
+    },
   ],
   shadcn: {
     prefix: "",

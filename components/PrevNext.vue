@@ -1,13 +1,13 @@
 <template>
   <ul class="prev-next-cont">
     <li class="link-item prev">
-      <NuxtLink v-if="prev" :to="prev.slug">
+      <NuxtLink v-if="prev" :to="getSlug(prev.path)">
         <ArrowLeftIcon class="icon" />
         <span> {{ prev.title }} </span>
       </NuxtLink>
     </li>
     <li class="link-item next">
-      <NuxtLink v-if="next" :to="next.slug">
+      <NuxtLink v-if="next" :to="getSlug(next.path)">
         <span> {{ next.title }} </span>
         <ArrowRightIcon class="icon" />
       </NuxtLink>
@@ -16,10 +16,9 @@
 </template>
 
 <script setup>
-// import icons
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/vue/24/solid";
-// define prev and next props
 defineProps(["prev", "next"]);
+const getSlug = (path) => path.substring(7); // extract after /posts/
 </script>
 
 <style scoped>
