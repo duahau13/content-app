@@ -27,8 +27,8 @@ Test again!
 
 Here's a handy bit of information for you!
 
-#details
-This will be rendered inside the `description` slot. _It's important_ to see how this **works**. \[More information can be found here]\(#)
-::
+\#details
+This will be rendered inside the `description` slot. *It's important* to see how this **works**. \[More information can be found here]\(#)
+\::
 
 We’ll also dive into supporting right-to-left languages, handling pluralization, and localizing dates, times, and currencies. Let’s get started on making your app truly global!
