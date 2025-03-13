@@ -18,7 +18,7 @@ const props = defineProps({
 });
 
 const formattedDate = computed(() => {
-  return new Date(props.date).toDateString();
+  return new Date(props.publishDate).toDateString();
 });
 </script>
 <style></style>

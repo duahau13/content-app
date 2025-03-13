@@ -37,7 +37,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const route = useRoute();
 const { data: doc } = await useAsyncData("post-" + route.path, () => {
   return queryCollection("post")
@@ -51,6 +51,7 @@ const { data: prevNext } = await useAsyncData("prevNext", () => {
     .where("draft", "=", false)
     .order("date", "DESC");
 });
+console.log(doc);
 </script>
 
 <style scoped>

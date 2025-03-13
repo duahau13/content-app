@@ -6,7 +6,7 @@
       </p>
       <p class="text-gray-500">Learn programing easily</p>
     </div>
-    <SearchPost />
+    <Minisearch />
   </header>
 </template>
 <script setup></script>
