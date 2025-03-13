@@ -15,11 +15,11 @@
       <img
         :src="doc.image.src"
         :alt="doc.image.alt"
-        class="w-full h-full object-cover"
+        class="w-full h-full object-cover py-8"
       />
     </header>
     <Toc :doc="doc" />
-    <main class="prose">
+    <main class="prose dark:prose-invert">
       <ContentRenderer :value="doc"></ContentRenderer>
     </main>
     <PrevNext :prev="prevNext[0]" :next="prevNext[1]" />

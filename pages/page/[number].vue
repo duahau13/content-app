@@ -1,13 +1,15 @@
 <template>
   <main>
-    <PostCard v-for="post in posts" :post="post" :key="post.slug" />
+    <div class="grid grid-cols-1 gap-4">
+      <PostCard v-for="post in posts" :post="post" :key="post.slug" />
+    </div>
     <nav class="pageNav">
-      <Btn>
+      <Button>
         <NuxtLink :to="previousPage">Back</NuxtLink>
         <NuxtLink v-if="nextPage" :to="`/page/${currentPage + 1}`"
           >Next</NuxtLink
         >
-      </Btn>
+      </Button>
     </nav>
   </main>
 </template>

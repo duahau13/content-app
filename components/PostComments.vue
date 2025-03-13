@@ -1,20 +1,22 @@
 <template>
-  <div>
-    <form @submit="submitComment" class="flex">
-      <textarea
+  <div class="py-6 max-w-md">
+    <form @submit="submitComment">
+      <Textarea
         required
         placeholder="Write your comment"
         v-model="comment.body"
         cols="40"
         rows="4"
       />
-      <input
-        required
-        type="text"
-        placeholder="Your name"
-        v-model="comment.author"
-      />
-      <button type="submit">Submit</button>
+      <div class="flex w-full items-center gap-1.5 pt-4">
+        <Input
+          required
+          type="text"
+          placeholder="Your name"
+          v-model="comment.author"
+        />
+        <Button type="submit" size="sm">Submit</Button>
+      </div>
     </form>
     <span v-if="loadingComments">Loading comments...</span>
     <!-- <h3>Comments (<span v-text="comments ? comments.length : 0" />)</h3> -->
@@ -30,6 +32,8 @@
 </template>
 
 <script type="module">
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 export default {
   data() {
     return {

@@ -1,5 +1,5 @@
 <template>
-  <nav class="toc">
+  <nav class="toc bg-card">
     <header class="toc-header">
       <h3 class="text-xl font-bold mt-0">Table of contents</h3>
     </header>
@@ -25,7 +25,7 @@ const props = defineProps({
 </script>
 <style scoped>
 .toc {
-  @apply p-4 bg-slate-50 border border-slate-200 rounded-lg;
+  @apply p-4 border border-slate-200 rounded-lg;
   @apply max-h-[calc(100vh-6rem)] overflow-auto;
 }
 .toc-header {

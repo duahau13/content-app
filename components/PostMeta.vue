@@ -1,11 +1,11 @@
 <template>
   <div class="inline-flex align-middle">
-    <CalendarIcon class="size-4 mr-1" />
+    <Calendar :size="16" class="mr-1 mt-[2px]" />
     {{ formattedDate }}
   </div>
 </template>
 <script setup>
-import { CalendarIcon } from "@heroicons/vue/24/outline";
+import { Calendar } from "lucide-vue-next";
 const props = defineProps({
   author: {
     type: String,

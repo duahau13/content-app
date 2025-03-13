@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white rounded-2xl overflow-hidden mb-4">
+  <Card class="overflow-hidden">
     <NuxtImg
       :src="post.image.src"
       format="webp"
@@ -7,19 +7,18 @@
       width="736"
       height="360"
     />
-
-    <div class="blog-card--meta p-4">
-      <h3 class="text-2xl font-semibold sm:pb-2">
+    <CardContent class="bg-card">
+      <h3 class="text-2xl font-semibold pt-6 pb-2">
         <NuxtLink :to="`/${post.slug}`">{{ post.title }}</NuxtLink>
       </h3>
-      <span class="text-sm text-gray-500 mr-4">{{ post.date }}</span>
+      <span class="text-sm text-gray-400 mr-4">{{ post.date }}</span>
       <span v-for="category in post.categories">
         <Badge class="mr-2">
           <NuxtLink :to="`/category/${category}`">{{ category }}</NuxtLink>
         </Badge>
       </span>
-    </div>
-  </div>
+    </CardContent>
+  </Card>
 </template>
 <script setup>
 const props = defineProps({
@@ -28,5 +27,13 @@ const props = defineProps({
     required: true,
   },
 });
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 </script>
 <style></style>
