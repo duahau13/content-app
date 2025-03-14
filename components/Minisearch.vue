@@ -1,4 +1,6 @@
 <script setup>
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-vue-next";
 import MiniSearch from "minisearch";
 
 const query = ref("");
@@ -23,15 +25,22 @@ const clearSearch = () => (query.value = "");
 </script>
 
 <template>
-  <div class="relative">
-    <input v-model="query" type="text" placeholder="Search..." />
-    <ul>
-      <li v-for="link of result" :key="link.id" class="mt-2">
-        <NuxtLink :to="link.id.substring(7)" @click="clearSearch">{{
-          link.title
-        }}</NuxtLink>
-        <!-- <p class="text-gray-500 text-xs">{{ link.content }}</p> -->
-      </li>
-    </ul>
+  <div class="flex items-center border-b-2 px-3 py-1">
+    <Search size="16" class="mr-2 h-4 w-4 shrink-0 opacity-50" />
+    <Input
+      v-model="query"
+      id="search"
+      type="text"
+      placeholder="Search..."
+      class="border-none focus-visible:ring-0 shadow-none p-0"
+    />
   </div>
+  <ul class="p-4 pt-0 pl-8">
+    <li v-for="link of result" :key="link.id" class="py-2 text-sm">
+      <NuxtLink :to="link.id.substring(7)" @click="clearSearch">{{
+        link.title
+      }}</NuxtLink>
+      <!-- <p class="text-gray-500 text-xs">{{ link.content }}</p> -->
+    </li>
+  </ul>
 </template>

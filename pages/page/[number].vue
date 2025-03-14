@@ -4,7 +4,7 @@
       <PostCard v-for="post in posts" :post="post" :key="post.slug" />
     </div>
     <nav class="pageNav">
-      <Button>
+      <Button size="sm">
         <NuxtLink :to="previousPage">Back</NuxtLink>
         <NuxtLink v-if="nextPage" :to="`/page/${currentPage + 1}`"
           >Next</NuxtLink

@@ -6,7 +6,7 @@ const { cat } = useRoute().params;
 const { data: categoryPostList } = await useAsyncData(
   "categoryPostList",
   () => {
-    return queryCollection("post").where("categories", "=", cat).all();
+    return queryCollection("post").where("categories", "IN", "linux").all();
   }
   // queryContent()
   //   .where({ categories: { $contains: cat } })
