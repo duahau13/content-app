@@ -26,20 +26,18 @@ export default defineNuxtConfig({
     "/": { prerender: true },
   },
   content: {
+    build: {
+      markdown: {
+        highlight: {
+          theme: "github-dark",
+        },
+      },
+    },
     renderer: {
       anchorLinks: false,
     },
     preview: {
       api: "https://api.nuxt.studio",
-    },
-  },
-  mdc: {
-    highlight: {
-      theme: {
-        dark: "github-dark",
-        default: "github-dark",
-        light: "github-light",
-      },
     },
   },
   image: {
