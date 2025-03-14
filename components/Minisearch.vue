@@ -37,9 +37,11 @@ const clearSearch = () => (query.value = "");
   </div>
   <ul class="p-4 pt-0 pl-8">
     <li v-for="link of result" :key="link.id" class="py-2 text-sm">
-      <NuxtLink :to="link.id.substring(7)" @click="clearSearch">{{
-        link.title
-      }}</NuxtLink>
+      <NuxtLink
+        :to="link.id.substring(7)"
+        @click="clearSearch, $emit('closeSearch')"
+        >{{ link.title }}</NuxtLink
+      >
       <!-- <p class="text-gray-500 text-xs">{{ link.content }}</p> -->
     </li>
   </ul>

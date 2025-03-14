@@ -7,7 +7,7 @@
     </div>
     <div class="flex">
       <!--  -->
-      <Dialog>
+      <Dialog v-model:open="open">
         <DialogTrigger as-child>
           <Button variant="outline" class="h-8">Search</Button>
         </DialogTrigger>
@@ -18,7 +18,7 @@
               Enter your search term to get results.
             </DialogDescription>
           </DialogHeader>
-          <Minisearch />
+          <Minisearch @closeSearch="open = false" />
         </DialogContent>
       </Dialog>
       <Button variant="ghost" class="w-8 h-8 p-0">
@@ -42,13 +42,12 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 const colorMode = useColorMode();
+// Search dialog status
+const open = ref(false);
 </script>
 <style></style>
